@@ -1,0 +1,62 @@
+---
+title: "Homework 1: ggplot2"
+author: "Denys Bondar"
+date: "2019-03-05"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+```
+
+By using *mpg* dataset:
+```{r}
+mpg
+```
+1. Map a continuous variable to color, size, and shape. How do these aesthetics behave differently for categorical vs. continuous variables?
+
+- Color
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = manufacturer, color= (displ)))
+```
+- Size
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = manufacturer, size = (displ)))
+```
+
+- Shape
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = manufacturer, shape = (displ)))
+```
+
+4. What happens if you map an aesthetic to something other than a variable name, like aes(colour = displ < 5)?
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = manufacturer, size = (displ), color = displ< 5))
+```
+2. What happens if you map the same variable to multiple aesthetics?
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = manufacturer, size = (displ), color = (displ)))
+```
+```
+
+3. What does the stroke aesthetic do? What shapes does it work with? (Hint: use ?geom_point)
+
+```{r}
+It changes border size of points. That is why it can change only shapes with
+```
+
+4. What happens if you map an aesthetic to something other than a variable name, like aes(colour = displ < 5)?
+
+```{r}
+It turns displ < 5 into a boolean (or dummy) variable on the fly and maps that T or F to the colour argument.
+```
